@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:openapi/openapi.dart';
 import 'weather/weather.model.dart';
 
 void main() async {
@@ -20,7 +20,13 @@ void main() async {
         ? HydratedStorage.webStorageDirectory
         : await getTemporaryDirectory(),
   );
-  runApp(WeatherApp(weatherRepository: WeatherRepository()));
+  runApp(
+    WeatherApp(
+      weatherRepository: WeatherRepository(
+        apiClient: Openapi(),
+      ),
+    ),
+  );
 }
 
 class WeatherApp extends StatelessWidget {

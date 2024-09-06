@@ -5,7 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:openapi/openapi.dart';
 
 class WeatherRepository {
-  final Openapi apiClient = Openapi();
+  final Openapi apiClient;
+
+  WeatherRepository({required this.apiClient});
 
   Future<Weather?> getForecast(double latitude, double longitude) async {
     try {
